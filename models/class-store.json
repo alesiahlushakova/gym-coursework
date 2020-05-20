@@ -1,0 +1,87 @@
+{
+  "classes": [
+    {
+      "id": "08a8f85c-0160-48d7-afb5-d07b27edeb29",
+      "userid": "01",
+      "name": "Yoga",
+      "difficulty": "Beginner",
+      "numSessions": 4,
+      "hidden": false,
+      "sessions": [
+        {
+          "id": "69da3ee9-b05b-45d2-97ce-63956cec7806",
+          "location": "minsk",
+          "dateTime": "April 15, 2020 11:00 AM",
+          "capacity": 6,
+          "enrolled": [],
+          "availability": 6
+        },
+        {
+          "id": "d12f038c-4feb-4793-8670-d23e1fc3c80d",
+          "location": "Studio 2",
+          "dateTime": "July 6, 2020 10:20 AM",
+          "capacity": 15,
+          "enrolled": [
+            "2b6f0989-7b7f-4a38-ad26-aa06b922d751",
+            "d894810b-42f7-4567-af97-940c719e36ef"
+          ],
+          "availability": 13
+        },
+        {
+          "id": "131afbea-266a-4d3a-9939-705a064990a2",
+          "location": "Studio 1",
+          "dateTime": "July 18, 2020 7:00 AM",
+          "capacity": 15,
+          "enrolled": [
+            "2b6f0989-7b7f-4a38-ad26-aa06b922d751"
+          ],
+          "availability": 14
+        },
+        {
+          "id": "3319e384-5318-4cce-a5b6-2a80052aaaa8",
+          "location": "Test Feature",
+          "dateTime": "September 14, 2020 1:35 PM",
+          "capacity": 15,
+          "enrolled": [
+            "3ad52697-6d98-4d80-8273-084de55a86c0",
+            "2b6f0989-7b7f-4a38-ad26-aa06b922d751"
+          ],
+          "availability": 13
+        }
+      ],
+      "duration": 45,
+      "description": "Re-balance and restore with this gentle but steady practice to reset your mind and body. We will utilize the props for support, get grounded and melt tension. It is structured around healing and rejuvenating and is suitable for all levels of Yoga looking for a slower paced class.",
+      "image": "https://d30y9cdsu7xlg0.cloudfront.net/png/81538-200.png"
+    },
+    {
+      "id": "dc7d3a16-7ab3-455d-a18f-76eb9f8f1d15",
+      "userid": "01",
+      "name": "H.I.I.T",
+      "difficulty": "Intermediate",
+      "numSessions": 0,
+      "hidden": false,
+      "sessions": [],
+      "image": "http://ynmfitness.com/wp-content/uploads/2015/02/YNM_HIITandRun_Icon_Final.png",
+      "duration": 50,
+      "description": "High-intensity interval training (HIIT), also called high-intensity intermittent exercise (HIIE) or sprint interval training (SIT), is a form of interval training, a cardiovascular exercise strategy alternating short periods of intense anaerobic exercise with less intense recovery periods."
+    },
+    {
+      "id": "7369c947-0b43-4dad-90b4-831803790e5b",
+      "userid": "01",
+      "name": "Boxercise",
+      "difficulty": "Advanced",
+      "numSessions": 0,
+      "hidden": false,
+      "sessions": []
+    },
+    {
+      "id": "48e57999-7e37-4942-9174-9d3a58e01231",
+      "userid": "01",
+      "name": "Test Hide Feature",
+      "difficulty": "",
+      "hidden": true,
+      "numSessions": 0,
+      "sessions": []
+    }
+  ]
+}

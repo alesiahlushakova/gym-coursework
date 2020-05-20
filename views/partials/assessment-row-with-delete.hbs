@@ -1,0 +1,18 @@
+<tr>
+  <td> {{date}} </td>
+  <td> {{weight}}   </td><td> {{chest}} </td><td> {{thigh}} </td>
+  <td> {{upperArm}} </td><td> {{waist}} </td><td> {{hips}}  </td>
+  <td class="center aligned">
+    {{#if trend}}
+      <i class="large teal arrow circle outline down icon"></i>
+    {{else}}
+      <i class="large red arrow circle outline up icon"></i>
+    {{/if}}
+  </td>
+  <td> {{comment}} </td>
+  <td>
+    <a href="/assessments/deleteAssessment/{{userid}}/{{id}}" class="ui icon button">
+      <i class="icon trash"></i>
+    </a>
+  </td>
+</tr>

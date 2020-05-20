@@ -1,0 +1,183 @@
+
+  <script>
+
+      let chatOpened = false;
+    let assistantSocket;
+function createNewMessage(sender, message)
+ {
+    const messageContainer = $('.messages');
+    messageContainer.append(`
+    <section class="ui segment container">
+        <div class="alert  ${sender}-message">
+            ${message}
+        </div>
+        </section>
+    `);
+  } 
+    function onlineassistant () 
+    {
+
+        if (!chatOpened)
+         {
+      
+            chatOpened = true;
+            assistantSocket = new WebSocket(location.origin.replace(/^hhtp/, 'ws'));
+            assistantSocket.onmessage = function (event)
+             {
+                createNewMessage('agent', event.data);
+            };
+
+            assistantSocket.onopen = function() 
+            {
+     
+                $('.send-message-button').click(function ()
+                 {
+  
+                    const newMessageInput = $('.new-message');
+                    const message = newMessageInput.val();
+                    newMessageInput.val('');
+
+                    assistantSocket.send(message);
+                    createNewMessage('client', message);
+                });
+            };
+        } 
+    };
+  </script>
+
+{{#if isTrainer}}
+  {{> trainermenu id="members"}}
+{{else}}
+  {{> menu id="dashboard"}}
+{{/if}}
+
+{{#unless (checkForOpenGoals user.id)}}
+  <div class="ui negative message">
+    <i class="close icon"></i>
+    <div class="header">
+      You have no open or goals awaiting processing. Set a new goal to get started !!
+    </div>
+  </div>
+{{/unless}}
+
+{{> analytics}}
+
+<section class="ui segment">
+  <div class="ui red ribbon label">Assessments</div>
+  {{#if isTrainer}}
+    <a class="ui label item" data-modal="updateAssessments">
+      <i class="right floated blue edit icon"></i> Edit Assessments
+    </a>
+    <a class="ui label item" data-modal="addAssessment">
+      <i class="blue plus icon"></i> Add Assessment
+    </a>
+  {{/if}}
+  <div class="ui divider"></div>
+  {{#if assessmentlist.assessments}}
+    {{> assessment-table}}
+  {{else}}
+    <section class="ui center aligned segment">You have no assessment. Book an assessment with a trainer to get started
+      !!
+    </section>
+  {{/if}}
+</section>
+
+<section class="ui segment container">
+   <div class="ui red ribbon label" onclick="onlineassistant()">
+     <i class="comment icon"  onclick="onlineassistant()"></i>
+     Online-assistant</div>
+
+<div class="messages item">
+</div>
+  
+ <div class="ui input left icon">
+            <i class="comment icon"></i>
+            <input placeholder="Comment"  class="new-message" type="text" name="comment">
+          </div>
+          <button class="send-message-button ui blue submit button">Send</button>
+
+</div>
+</section>
+
+<section class="ui segment container">
+  <div class="ui green ribbon label">Bookings</div>
+  <a class="ui label item" data-modal="addBooking">
+    <i class="blue plus icon"></i> Book Assessment
+  </a>
+  <div class="ui divider"></div>
+  {{#if bookings}}
+    {{> listBooking}}
+  {{else}}
+    <section class="ui center aligned segment">You have no assessment bookings</section>
+  {{/if}}
+</section>
+
+<section class="ui segment container">
+  <div class="ui purple ribbon label">Goals</div>
+  <a class="ui label item" data-modal="addGoal">
+    <i class="blue plus icon"></i> Add Goal
+  </a>
+  <div class="ui divider"></div>
+  {{#if goals.goals}}
+    {{> listGoals}}
+  {{else}}
+    <section class="ui center aligned segment">You have no goals</section>
+  {{/if}}
+</section>
+
+{{#if isTrainer}}
+  <section class="ui segment container">
+    <div class="ui grey ribbon label">Fitness Programme</div>
+    <a class="ui label item" data-modal="addFitnessProgramme{{user.id}}">
+      <i class="blue plus icon"></i> Add Fitness Programme
+      {{> addFitnessProgramme id=user.id}}
+    </a>
+    <a class="ui label item" href="/trainerDashboard/deleteProgramme/{{user.id}}">
+      <i class="red delete icon"></i> Delete Fitness Programme
+    </a>
+    <div class="ui divider"></div>
+    {{#if user.program}}
+      <div class="ui relaxed divided list">
+        {{#each user.program}}
+          <div class="item">
+            <img class="ui avatar image" {{#if image}} src="{{image}}" {{else}}
+                 src="http://s3.amazonaws.com/wpd-assets/ymcanewyork/uploads/sub-class-thumbs/family-yoga-pilates-icon.png" {{/if}}>
+            <div class="content">
+              <div class="header">
+                {{#if type}}
+                  <a href="/{{type}}/{{classId}}"> {{name}} </a>
+                {{else}}
+                  <a href="/routine/{{../user.id}}/{{id}}">{{name}}</a>
+                {{/if}}
+              </div>
+            </div>
+            <section class="center aligned content" style="float:right; padding-right:2em">
+              <div class="ui dropdown teal button"><i class="options icon"></i>Options
+                <i class="dropdown icon"></i>
+                <section class="menu">
+                  <div class="item" data-modal="{{id}}"><i class="blue edit icon"></i> Edit Details</div>
+                  {{> updateFitnessProgramme userId=../user.id type=type}}
+
+                  <a class="item" href="/trainerDashboard/{{../user.id}}/deleteRoutine/{{id}}">
+                    <i class="red delete icon"></i> Delete {{#if type}} Class {{else}} Routine{{/if}}
+                  </a>
+                </section>
+              </div>
+            </section>
+          </div>
+        {{/each}}
+      </div>
+    {{else}}
+      <section class="ui center aligned segment">
+        You don't have a fitness programme. Book an assessment with a trainer to build a programme geared for you !!
+      </section>
+    {{/if}}
+  </section>
+
+  {{> addAssessment}}
+  {{> updateAssessment userid=user.id}}
+{{/if}}
+
+{{> addBooking}}
+{{> addGoal}}
+{{> commonFormValidation}}

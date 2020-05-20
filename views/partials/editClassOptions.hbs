@@ -1,0 +1,20 @@
+<section class="center aligned content">
+  <div class="ui dropdown teal button"><i class="options icon"></i>Options
+    <i class="dropdown icon"></i>
+    <section class="menu">
+      <div class="item" data-modal="{{id}}"><i class="blue edit icon"></i> Edit Details</div>
+      {{> updateClass}}
+
+      <a class="item" href="/classes/delete/{{id}}">
+        <i class="red delete icon"></i> Delete Class
+      </a>
+      <a class="item" href="/classes/hideOrUnhide/{{id}}">
+        {{#if hidden}}
+          <i class="green unhide icon"></i> Unhide Class
+        {{else}}
+          <i class="red hide icon"></i> Hide Class
+        {{/if}}
+      </a>
+    </section>
+  </div>
+</section>

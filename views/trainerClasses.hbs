@@ -1,0 +1,29 @@
+{{> trainermenu id="classes"}}
+
+<section class="ui center aligned basic segment">
+  <a class="ui blue submit button item" data-modal="addClass">
+    <i class="white plus icon"></i> New Class
+  </a>
+</section>
+
+<div class="ui container">
+  <div class="ui centered four doubling stackable cards">
+    {{#each classes}}
+      <div class="ui link card">
+          {{#if hidden}}
+          <div class="ui right corner red label">
+            <i class="hide icon"></i>
+          </div>
+          {{else}}
+            <div class="ui right corner green label">
+              <i class="unhide icon"></i>
+            </div>
+          {{/if}}
+        {{> listClasses}}
+        {{> editClassOptions allTrainers=../allTrainers}}
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+{{> addClasses}}

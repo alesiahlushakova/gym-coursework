@@ -1,0 +1,29 @@
+{{> welcomemenu id='login' }}
+
+{{> message}}
+
+<div class="ui two column grid basic middle aligned stackable segment">
+  <section class="column">
+    <img class="ui centered image" src="http://res.cloudinary.com/dv6skh7wa/image/upload/v1500152762/Node%20Gym/login.png">
+  </section>
+  <section class="column">
+    <form class="ui segment form" action="/authenticate" method="POST">
+      <h3 class="ui header">Log-in</h3>
+      <div class="field">
+        <label>Email</label>
+        <div class="ui input left icon">
+          <i class="mail icon"></i>
+          <input placeholder="Email" name="email">
+        </div>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <div class="ui input left icon">
+          <i class="lock icon"></i>
+          <input type="password"  name="password">
+        </div>
+      </div>
+      <button class="ui blue submit button"><i class="sign in icon"></i>Login</button>
+    </form>
+  </section>
+</div>

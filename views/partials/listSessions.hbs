@@ -1,0 +1,56 @@
+<section class="ui middle aligned center aligned stackable grid segment">
+  <section class="two column row">
+    <div class="four wide column">
+      <img class="ui middle aligned circular small image" {{#if classes.image}} src="{{classes.image}}" {{else}} src="http://s3.amazonaws.com/wpd-assets/ymcanewyork/uploads/sub-class-thumbs/family-yoga-pilates-icon.png" {{/if}}>
+    </div>
+    <div class="twelve wide column">
+      {{classes.description}}
+    </div>
+  </section>
+
+{{#unless isTrainer}}
+  {{#if classes.sessions}}
+  <section class="ui center aligned row">
+    <form action="/classes/{{classes.id}}/enrolAll" method="POST">
+      <button class="ui blue submit button"><i class="checkmark box icon"></i> Enroll all sessions </button>
+    </form>
+
+    <a href="/classes/{{classes.id}}/unEnrolAll">
+      <button class="ui red submit button"><i class="square outline icon"></i> Un-enroll all sessions </button>
+    </a>
+  </section>
+  {{/if}}
+{{/unless}}
+</section>
+
+<div class="ui container">
+  <div class="ui centered three doubling stackable cards">
+  {{#each classes.sessions}}
+    <div class="ui link card">
+      {{#if (checkIsInPast dateTime)}}
+        <div class="ui right corner grey label">
+          <i class="history icon"></i>
+        </div>
+      {{/if}}
+
+      <section class="content item" data-modal="view{{id}}">
+        <div class="center aligned header">{{dateTime}}</div>
+        <section class="ui two column grid">
+          <section class="column">
+            <div class="meta row">Location:</div>
+            <div class="meta row">Capacity:</div>
+            <div class="meta row">Availability:</div>
+          </section>
+          <section class="column">
+            <div class="meta row">{{location}}</div>
+            <div class="meta row">{{capacity}}</div>
+            <div class="meta row">{{availability}} Spaces</div>
+          </section>
+        </section>
+      </section>
+
+      {{> editSessionsOptions isTrainer=../isTrainer classes=../classes userId=../user.id enrolled=enrolled}}
+    </div>
+  {{/each}}
+  </div>
+</div>

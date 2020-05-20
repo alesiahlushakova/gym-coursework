@@ -1,0 +1,43 @@
+<table class="ui celled table">
+  <thead>
+  <tr>
+    <th> Name</th>
+    <th> Type</th>
+    <th> Reps</th>
+    <th> Sets</th>
+    <th> Duration (mins)</th>
+    <th> Rest (sec)</th>
+    {{#if isTrainer}}
+      <th></th>
+    {{/if}}
+  </tr>
+  </thead>
+  <tbody>
+  {{#each routine.exercises}}
+    <tr>
+      <td> {{name}} </td>
+      <td> {{type}} </td>
+      <td> {{reps}} </td>
+      <td> {{sets}} </td>
+      <td> {{duration}} </td>
+      <td> {{rest}} </td>
+      {{#if ../isTrainer}}
+        <td>
+          <section class="center aligned content">
+            <div class="ui dropdown teal button"><i class="options icon"></i>Options
+              <i class="dropdown icon"></i>
+              <section class="menu">
+                <div class="item" data-modal="{{id}}"><i class=" blue edit icon"></i> Edit Details</div>
+                {{> updateExercise routine=../routine userId=../userId}}
+                <a class="item" href="/fitness/{{../userId}}/{{../routine.id}}/deleteExercise/{{id}}">
+                  <i class="red delete icon"></i> Delete Exercise
+                </a>
+              </section>
+            </div>
+          </section>
+        </td>
+      {{/if}}
+    </tr>
+  {{/each}}
+  </tbody>
+</table>

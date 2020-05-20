@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> {{title}} </title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css" type="text/css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.js"></script>
+    <link rel="icon" type="img/png" href="http://res.cloudinary.com/dv6skh7wa/image/upload/v1500119960/Node%20Gym/favicon.png">
+    <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI-Calendar/76959c6f7d33a527b49be76789e984a0a407350b/dist/calendar.min.js"></script>
+    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI-Calendar/76959c6f7d33a527b49be76789e984a0a407350b/dist/calendar.min.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <section class="ui container">
+      {{{body}}}
+    </section>
+  </body>
+  <script>
+  
+    $('.ui.dropdown').dropdown();
+    let today = new Date();
+    // To bring up unique modal for when a page has multiple modals
+
+    $('.item').on('click', function(){
+      // using the attribute data-modal to identify for what modal the button references
+      modal = $(this).attr('data-modal');
+      // creating the individual event attached to click over button
+      $('#'+modal+'.modal').modal(
+        'show'
+      );
+      // Bring up a calender for only time selection
+      $('#dateOnly').calendar({
+        type: 'date',
+        minDate: new Date(),
+      });
+      // Bring up calender for date and time selection
+      $('#dateTime').calendar({
+        minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours() + 2),
+        maxDate: new Date(today.getFullYear() + 1 , today.getMonth(), today.getDate(), 22),
+        disableMinute: true,
+      });
+      // Brings up a different calender for the update modal with date and time
+      $('#cal'+modal).calendar({
+        minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours() + 2),
+        maxDate: new Date(today.getFullYear() + 1 , today.getMonth(), today.getDate(), 22),
+        disableMinute: true,
+      });
+    });
+
+    $(".close.icon").click(function(){
+      $(this).parent().hide();
+    });
+    $('.ui.accordion').accordion();
+  </script>
+</html>

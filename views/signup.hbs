@@ -1,0 +1,179 @@
+{{> welcomemenu id="signup"}}
+
+{{> message}}
+
+<div class="ui two column grid basic middle aligned stackable segment">
+  <section class="column">
+    <img class="ui image" src="http://res.cloudinary.com/dv6skh7wa/image/upload/v1499948857/Node%20Gym/signup.png">
+  </section>
+  <section class="column">
+    <form class="ui segment form" action="/register" method="POST">
+      <h3 class="ui header">Register</h3>
+      <div class="two fields">
+        <div class="field">
+          <label>Name</label>
+          <div class="ui input left icon">
+            <i class="user icon"></i>
+            <input placeholder="Name" type="text" name="name">
+          </div>
+        </div>
+        <div class="field">
+          <label>Gender</label>
+          <div class="ui selection dropdown">
+            <i class="genderless icon"></i>
+            <input type="hidden" name="gender">
+            <i class="dropdown icon"></i>
+            <div class="default text">Gender</div>
+            <div class="menu">
+              <div class="item" data-value="Male">Male</div>
+              <div class="item" data-value="Female">Female</div>
+              <div class="item" data-value="Agender">Agender</div>
+              <div class="item" data-value="Cis Female">Cis Female</div>
+              <div class="item" data-value="Cis Male">Cis Male</div>
+              <div class="item" data-value="Androgyne">Androgyne</div>
+              <div class="item" data-value="Genderqueer">Genderqueer</div>
+              <div class="item" data-value="Trans Male">Trans Male</div>
+              <div class="item" data-value="Trans Female">Trans Female</div>
+              <div class="item" data-value="Neither">Neither</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <div class="ui input left icon">
+          <i class="mail icon"></i>
+          <input placeholder="Email" type="text" name="email">
+        </div>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <div class="ui input left icon">
+          <i class="lock icon"></i>
+          <input placeholder="Password" type="password" name="password">
+        </div>
+      </div>
+      <div class="field">
+        <label>Confirm Password</label>
+        <div class="ui input left icon">
+          <i class="lock icon"></i>
+          <input placeholder="Confirm Password" type="password" name="confirmPassword">
+        </div>
+      </div>
+      <div class="field">
+        <label>Address</label>
+        <div class="ui input left icon">
+          <i class="home icon"></i>
+          <input placeholder="Address" type="text" name="address">
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Height</label>
+          <div class="ui input left icon">
+            <i class="resize vertical icon"></i>
+            <input placeholder="Height" type="text" name="height">
+          </div>
+        </div>
+        <div class="field">
+          <label>Starting Weight</label>
+          <div class="ui input left icon">
+            <i class="law icon"></i>
+            <input placeholder="Starting Weight" type="text" name="startingweight">
+          </div>
+        </div>
+      </div>
+      <button class="ui blue submit button"><i class="add user icon"></i>Submit</button>
+      <div class="ui error message"></div>
+    </form>
+  </section>
+</div>
+
+<script>
+$('.ui.form')
+  .form({
+    fields: {
+      name: {
+        identifier: 'name',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter your name'
+          }
+        ]
+      },
+      email: {
+        identifier: 'email',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter your email'
+          },
+          {
+            type   : 'email',
+            prompt : 'Please enter a valid e-mail'
+          }
+        ]
+      },
+      gender: {
+        identifier: 'gender',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please select a gender'
+          }
+        ]
+      },
+      password: {
+        identifier: 'password',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter a password'
+          }
+        ]
+      },
+      confirmPassword: {
+        identifier: 'confirmPassword',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please confirm password'
+          },
+          {
+            type   : 'match[password]',
+            prompt : 'Password do not match'
+          }
+        ]
+      },
+      address: {
+        identifier: 'address',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter your address'
+          }
+        ]
+      },
+      height: {
+        identifier: 'height',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter your height in metres'
+          }
+        ]
+      },
+      startingweight: {
+        identifier: 'startingweight',
+        rules: [
+          {
+            type   : 'empty',
+            prompt : 'Please enter your current weight in Kgs'
+          }
+        ]
+      }
+    }
+  })
+;
+</script>

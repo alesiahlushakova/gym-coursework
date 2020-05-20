@@ -1,0 +1,20 @@
+{
+  "trainers": [
+    {
+      "name": "Trainer Sean",
+      "email": "trainer@trainer.com",
+      "password": "$2b$10$ExXuThTp/v.Ai0SwnHCNN.Ls2HZoG6YbgHLJMR49NxG4QmBw50J7y",
+      "id": "01",
+      "gender": "Male",
+      "address": "The Gym",
+      "height": 1.78,
+      "startingweight": 68
+    },
+    {
+      "name": "Trainer Joe",
+      "email": "joe@trainer.com",
+      "password": "$2b$10$ExXuThTp/v.Ai0SwnHCNN.Ls2HZoG6YbgHLJMR49NxG4QmBw50J7y",
+      "id": "02"
+    }
+  ]
+}
